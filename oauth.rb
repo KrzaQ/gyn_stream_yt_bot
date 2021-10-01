@@ -10,6 +10,7 @@ class Google
         @fn = fn
         h = JSON.parse(File.read(@fn), symbolize_names: true)
         x = h[:installed]
+        @api_key = h[:api_key]
         @client_id = x[:client_id]
         @client_secret = x[:client_secret]
         @refresh_token = x.fetch(:refresh_token, nil)
@@ -73,6 +74,10 @@ class Google
         data['installed']['refresh_token'] = @refresh_token
         File.write @fn, JSON.pretty_generate(data)
         @refresh_token
+    end
+
+    def api_key
+        @api_key
     end
 end
 

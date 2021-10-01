@@ -108,7 +108,9 @@ class YoutubeChatMessages
     def api_call api, method: 'GET', query: nil, body: nil
         tries = 0
         begin
-            url = "https://www.googleapis.com/youtube/v3/#{api}"
+            url = 'https://www.googleapis.com/youtube/v3/%s?key=%s' % [
+                api, @google.api_key
+            ]
             headers = {
                 'Authorization': "Bearer #{@auth_token}",
                 'Content-Type': 'application/json',
